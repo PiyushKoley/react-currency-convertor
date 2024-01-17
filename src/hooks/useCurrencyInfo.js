@@ -10,10 +10,8 @@ function useCurrencyInfo(currency) {
             setData(res[currency]);
         })
 
-        console.log("***printing the data inside useEffect useCurrencyInfo ****",data);
     },[currency]);
 
-    console.log("printing outside the useEffect inside useCurrencyInfo",data);
     return data;
 }
 

@@ -12,7 +12,7 @@ function App() {
   // when ever we change the from useState this function will get called bcz in useCurrencyInfo [from] 
   // is used in dependency array in useEffect
   const currencyInfo = useCurrencyInfo(from); // this is holding whole object from API call.
-  console.log("***",currencyInfo);
+  
   const options = Object.keys(currencyInfo);
 
   // when we want to swap the results...
@@ -59,7 +59,7 @@ function App() {
                         <button
                             type="button"
                             className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-0.5"
-                            
+                            onClick={swap}
                         >
                             swap
                         </button>
@@ -69,14 +69,17 @@ function App() {
                             label="To"
                             amount={convertedAmount}
                             currencyOptions={options}
-                            onCurrencyChange={(currency) => setTo(currency)}
+                            onCurrencyChange={(currency) => {
+                                setTo(currency);
+                                convert();
+                            }}
                             amountDisable={true}
                             selectCurrency={to}
                             
                         />
                     </div>
                     <button type="submit" className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg">
-                        Convert 
+                        Convert {`${from.toUpperCase()} to  ${to.toUpperCase()}`}
                     </button>
                 </form>
             </div>
